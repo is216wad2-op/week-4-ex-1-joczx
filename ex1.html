@@ -14,13 +14,31 @@
             Password: <input type="password" name="password" ><br>
             <input type="submit" value="Submit"><br>
             <input type="reset" name="reset" value="Reset">
+            <button type="button" onclick="event.preventDefault(); validateForm('form')"></button>
         </form>
 
         <script>
         
             function validateForm() {
-                var x = document.getElementsByName("id");
-                console.log(x);
+                var alertmsg = "";
+                var id = document.getElementsByName("id")[0].value;
+                if(id.length > 10){
+                    alertmsg += "ID must be 10 or less characters\n";
+                }
+                var age = document.getElementsByName("age")[0].value;
+                if(age < 10 || age > 40){
+                    alertmsg += "Age must be between 10 and 40\n";
+                }
+                var email = document.getElementsByName("email")[0].value;
+                if(email.lastIndexOf("@") == -1){
+                    alertmsg += "Email must contain '@'";
+                }
+                var pw = document.getElementsByName("password")[0].value;
+                if(pw.length == 0){
+                    alertmsg += "Password must not be empty";
+                }
+                if(alertmsg.length > 1){
+                    alert(alertmsg)};
             }
      
          </script>
